@@ -1,7 +1,9 @@
 from database.db import MariaDBConnection
 from model.translate import getRespone
 from lesson.convert_en_to_ta import getLesson
-# Define the languages dictionary with string keys
+from question.question_ta import getQuestion
+import asyncio
+
 languages = {
     "Tamil": "ta_IN",
     "Telugu": "te_IN",
@@ -9,7 +11,11 @@ languages = {
 }
 
 def main():
-    getLesson()
+    getQuestion()
+    # asyncio.run(getQuestion())
+    
+    
+    # getLesson()
     # Create a database connection
     # db_connection = MariaDBConnection()
     # db_connection.connect()
@@ -24,9 +30,9 @@ def main():
     # db_connection.close()
 
     # Translate a sample text to Tamil
-    lang = languages["Tamil"]
-    translation = getRespone("Hello, world!", lang)
-    print("Translated text:", translation)
+    # lang = languages["Tamil"]
+    # translation = getRespone("Hello, world!", lang)
+    # print("Translated text:", translation)
 
 if __name__ == "__main__":
     main()

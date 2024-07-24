@@ -34,6 +34,18 @@ class MariaDBConnection:
                 print(f"Error executing query: {e}")
         else:
             print("No active database connection")
+    def execute_update(self, query, params=None):
+        if self.conn:
+            try:
+                self.cur.execute(query, params)
+                self.conn.commit()
+            # return self.cur.rowcount
+            except mariadb.Error as e:
+                print(f"Error executing query: {e}")
+                self.conn.rollback()
+        else:
+            print("No connection to the database.")
+          
 
     def close(self):
         if self.conn:
